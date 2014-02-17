@@ -12,6 +12,7 @@ public class Test {
     public Test ()
     {
         System.out.println("amine test");
+        System.out.println("amine test2");
     }
     
 }
