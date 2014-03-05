@@ -14,18 +14,18 @@ import javax.swing.JTable;
  *
  * @author Hejer
  */
-public class ListeDesServices extends javax.swing.JFrame {
+public class AjouterService extends javax.swing.JFrame {
 
-    private TableModel ListeServiceControlleur;
+    
     static int choix;
 
     /**
      * Creates new form ListeDesServices
      */
-    public ListeDesServices() {
+    public AjouterService() {
         initComponents();
         this.disableAll();
-        jTable1.setVisible(false);
+        
     }
 
     public void disableAll() {
@@ -83,10 +83,7 @@ public class ListeDesServices extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         ajouter = new javax.swing.JLabel();
-        supprimer = new javax.swing.JLabel();
         valider = new javax.swing.JLabel();
         retour = new javax.swing.JLabel();
 
@@ -125,20 +122,10 @@ public class ListeDesServices extends javax.swing.JFrame {
 
         jLabel7.setText("Adresse");
 
-        jTable1.setModel(new ListeServiceControlleur());
-        jScrollPane1.setViewportView(jTable1);
-
         ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         ajouter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ajouterMouseClicked(evt);
-            }
-        });
-
-        supprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        supprimer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                supprimerMouseClicked(evt);
             }
         });
 
@@ -182,18 +169,13 @@ public class ListeDesServices extends javax.swing.JFrame {
                             .addComponent(jTextField2)
                             .addComponent(jTextField7)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
-                                .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83)
-                                .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(120, 120, 120)
+                        .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,16 +208,12 @@ public class ListeDesServices extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(valider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(supprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valider)
                     .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,7 +235,7 @@ public class ListeDesServices extends javax.swing.JFrame {
 
         ajouter.setEnabled(false);
 
-        supprimer.setEnabled(false);
+       
 
         valider.setEnabled(true);
         retour.setEnabled(true);
@@ -282,27 +260,13 @@ public class ListeDesServices extends javax.swing.JFrame {
 
                 dao.AjouterService(S);
 
-                jTable1 = new javax.swing.JTable();
-
-                jTable1.setModel(new ListeServiceControlleur());
-
-                jScrollPane1.setViewportView(jTable1);
-                break;
-            case 2:
-                int id = (Integer) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0);
-
-                dao.DeleteService(id);
-                jTable1 = new javax.swing.JTable();
-
-                jTable1.setModel(new ListeServiceControlleur());
-
-                jScrollPane1.setViewportView(jTable1);
+               
                 break;
         }
 
         ajouter.setEnabled(true);
 
-        supprimer.setEnabled(true);
+       
 
         valider.setEnabled(false);
         retour.setEnabled(false);
@@ -311,23 +275,11 @@ public class ListeDesServices extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_validerMouseClicked
-    private void supprimerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supprimerMouseClicked
-        ajouter.setEnabled(false);
-
-        supprimer.setEnabled(false);
-
-        valider.setEnabled(true);
-        retour.setEnabled(true);
-
-        choix = 2;
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supprimerMouseClicked
 
     private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
         ajouter.setEnabled(true);
 
-        supprimer.setEnabled(true);
+        
 
         valider.setEnabled(false);
         retour.setEnabled(false);
@@ -357,16 +309,16 @@ public class ListeDesServices extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListeDesServices.class
+            java.util.logging.Logger.getLogger(AjouterService.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListeDesServices.class
+            java.util.logging.Logger.getLogger(AjouterService.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListeDesServices.class
+            java.util.logging.Logger.getLogger(AjouterService.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListeDesServices.class
+            java.util.logging.Logger.getLogger(AjouterService.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -375,7 +327,7 @@ public class ListeDesServices extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ListeDesServices().setVisible(true);
+                new AjouterService().setVisible(true);
             }
         });
     }
@@ -388,8 +340,6 @@ public class ListeDesServices extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -398,7 +348,6 @@ public class ListeDesServices extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel retour;
-    private javax.swing.JLabel supprimer;
     private javax.swing.JLabel valider;
     // End of variables declaration//GEN-END:variables
 }

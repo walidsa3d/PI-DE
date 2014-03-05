@@ -16,9 +16,7 @@ public class ListeDesReservations extends javax.swing.JFrame {
 
     static int choix;
 
-    public boolean isNumeric(String s) {
-        return s.matches("[-+]?\\d*\\.?\\d+");
-    }
+   
 
     //activer tous les champs textes
     public void initText() {
@@ -336,10 +334,8 @@ public class ListeDesReservations extends javax.swing.JFrame {
 
     private void txtDateReservationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateReservationKeyReleased
 
-        if (this.isNumeric(txtDateReservation.getText().substring(txtDateReservation.getText().length() - 1,
-                txtDateReservation.getText().length()))) {
-            txtDateReservation.setText(txtDateReservation.getText().substring(0, txtDateReservation.getText().length() - 1));
-        }
+       
+        
     }//GEN-LAST:event_txtDateReservationKeyReleased
 
     private void txtIDResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDResActionPerformed

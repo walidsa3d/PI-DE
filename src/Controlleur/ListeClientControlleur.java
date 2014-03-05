@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ListeClientControlleur extends AbstractTableModel {
 
-    String[] headers ={"IdClient", "Nom","Prenom","Adresse","Mail","Mot De passe","Telephone"};
+    String[] headers ={"IdClient", "Nom","Prenom","Adresse","Mail","Mot De passe","Telephone","Code"};
     List<Client> MesClient = new ArrayList<Client>();
 
     public ListeClientControlleur() {
@@ -54,6 +54,8 @@ public class ListeClientControlleur extends AbstractTableModel {
                 return MesClient.get(rowIndex).getMot_De_Passe();
             case 6:
                 return MesClient.get(rowIndex).getTel();
+            case 7:
+                return MesClient.get(rowIndex).getCode();
 
 
             default:

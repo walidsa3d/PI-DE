@@ -20,8 +20,14 @@ public class ListeDesClients extends javax.swing.JFrame {
      * Creates new form ListeDesClients
      */
     public ListeDesClients() {
+        /* Client c = new Client();
+         ClientDAO dao = new ClientDAO();*/
         initComponents();
         this.disableAll();
+        //jTextFieldCode.setText(Integer.toString(c.getCode()));
+
+        jTextFieldCode.setText(Integer.toString(0));
+
     }
 
     public void disableAll() {
@@ -31,6 +37,7 @@ public class ListeDesClients extends javax.swing.JFrame {
         jTextFieldMail.setEnabled(false);
         jTextFieldMotDePasse.setEnabled(false);
         jTextFieldTele.setEnabled(false);
+        jTextFieldCode.setEnabled(false);
 
 
     }
@@ -42,6 +49,7 @@ public class ListeDesClients extends javax.swing.JFrame {
         jTextFieldMail.setEnabled(true);
         jTextFieldMotDePasse.setEnabled(true);
         jTextFieldTele.setEnabled(true);
+        jTextFieldCode.setEnabled(true);
 
 
     }
@@ -84,6 +92,9 @@ public class ListeDesClients extends javax.swing.JFrame {
         supprimer = new javax.swing.JLabel();
         valider = new javax.swing.JLabel();
         retour = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldCode = new javax.swing.JTextField();
+        modifier = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +113,12 @@ public class ListeDesClients extends javax.swing.JFrame {
         jTextFieldNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomActionPerformed(evt);
+            }
+        });
+
+        jTextFieldTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTeleActionPerformed(evt);
             }
         });
 
@@ -139,12 +156,24 @@ public class ListeDesClients extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Code");
+
+        modifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        modifier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modifierMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,31 +182,32 @@ public class ListeDesClients extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldTele, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldMotDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(266, 266, 266)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(ajout, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTele, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMotDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCode)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(72, 72, 72)
+                            .addComponent(ajout, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(54, 54, 54)
+                            .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(72, 72, 72)
+                            .addComponent(modifier)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69)
+                            .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -209,15 +239,24 @@ public class ListeDesClients extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ajout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ajout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -229,7 +268,7 @@ public class ListeDesClients extends javax.swing.JFrame {
 
     private void ajoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajoutMouseClicked
 
-
+        jTextFieldCode.setText(Integer.toString(0));
         ajout.setEnabled(false);
 
         supprimer.setEnabled(false);
@@ -255,8 +294,9 @@ public class ListeDesClients extends javax.swing.JFrame {
 
     private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
 
-        ajout.setEnabled(true);
+        jTextFieldCode.setText(Integer.toString(0));
 
+        ajout.setEnabled(true);
         supprimer.setEnabled(true);
 
         valider.setEnabled(false);
@@ -277,8 +317,8 @@ public class ListeDesClients extends javax.swing.JFrame {
                 c.setMail(jTextFieldMail.getText());
                 c.setMot_De_Passe(jTextFieldMotDePasse.getText());
                 c.setTel(Integer.parseInt(jTextFieldTele.getText()));
+                c.setCode(Integer.parseInt(jTextFieldCode.getText()));
                 dao.ajouter(c);
-
                 jTable1 = new javax.swing.JTable();
 
                 jTable1.setModel(new ListeClientControlleur());
@@ -296,8 +336,18 @@ public class ListeDesClients extends javax.swing.JFrame {
                 jScrollPane1.setViewportView(jTable1);
                 break;
 
+            case 3:
+                int id1 = (Integer) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0);
+                c.setId_Client(id1);
+                c.setCode(Integer.parseInt(jTextFieldCode.getText()));
+                dao.Modifier(c);
+                jTable1 = new javax.swing.JTable();
+                jTable1.setModel(new ListeClientControlleur());
+                jScrollPane1.setViewportView(jTable1);
+                break;
+
         }
-         ajout.setEnabled(true);
+        ajout.setEnabled(true);
 
         supprimer.setEnabled(true);
 
@@ -310,6 +360,26 @@ public class ListeDesClients extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_validerMouseClicked
+
+    private void jTextFieldTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTeleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTeleActionPerformed
+
+    private void modifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifierMouseClicked
+
+        int id = (Integer) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 7);
+        jTextFieldCode.setText(Integer.toString(id));
+
+        ajout.setEnabled(false);
+        modifier.setEnabled(false);
+        supprimer.setEnabled(false);
+
+        valider.setEnabled(true);
+        retour.setEnabled(true);
+        this.jTextFieldCode.setEnabled(true);
+        choix = 3;
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifierMouseClicked
 
     /**
      * @param args the command line arguments
@@ -354,14 +424,17 @@ public class ListeDesClients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldAdresse;
+    private javax.swing.JTextField jTextFieldCode;
     private javax.swing.JTextField jTextFieldMail;
     private javax.swing.JTextField jTextFieldMotDePasse;
     private javax.swing.JTextField jTextFieldNom;
     private javax.swing.JTextField jTextFieldPrenom;
     private javax.swing.JTextField jTextFieldTele;
+    private javax.swing.JLabel modifier;
     private javax.swing.JLabel retour;
     private javax.swing.JLabel supprimer;
     private javax.swing.JLabel valider;

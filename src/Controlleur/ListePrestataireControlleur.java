@@ -16,7 +16,7 @@ import Entites.Prestataire;
 public class ListePrestataireControlleur extends AbstractTableModel  {
    
 
-    String[] headers ={"IdPrestataire", "Nom","Prenom","Adresse","Mail","Mot De passe","Telephone"};
+    String[] headers ={"IdPrestataire", "Nom","Prenom","Adresse","Mail","Mot De passe","Telephone","Code"};
     List<Prestataire> MesPrestataires = new ArrayList<Prestataire>();
 
     public ListePrestataireControlleur() {
@@ -47,13 +47,15 @@ public class ListePrestataireControlleur extends AbstractTableModel  {
             case 2:
                 return MesPrestataires.get(rowIndex).getPrenom();
             case 3:
-                return MesPrestataires.get(rowIndex).getMail();
+                   return MesPrestataires.get(rowIndex).getAdress();
             case 4:
-                return MesPrestataires.get(rowIndex).getAdress();
+                return MesPrestataires.get(rowIndex).getMail();
             case 5:
                 return MesPrestataires.get(rowIndex).getMot_De_Passe();
             case 6:
                 return MesPrestataires.get(rowIndex).getTel();
+            case 7:
+                return MesPrestataires.get(rowIndex).getCode();
 
 
             default:

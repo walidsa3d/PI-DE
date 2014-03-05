@@ -5,9 +5,7 @@
 package Forms;
 
 import DAO.PrestataireDao;
-import Controlleur.ListeClientControlleur;
 import Controlleur.ListePrestataireControlleur;
-import DAO.ClientDAO;
 import Entites.Prestataire;
 
 /**
@@ -23,8 +21,9 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
      */
     public ListeDesPrestataires() {
         initComponents();
-        jTable2.setVisible(false);
+        // jTable2.setVisible(false);
         this.disableAll();
+        jTextCode.setText(Integer.toString(0));
     }
 
     public void disableAll() {
@@ -34,6 +33,7 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
         TextMdp.setEnabled(false);
         TextMail.setEnabled(false);
         TextTel.setEnabled(false);
+        jTextCode.setEnabled(false);
 
 
     }
@@ -45,6 +45,7 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
         TextMdp.setEnabled(true);
         TextMail.setEnabled(true);
         TextTel.setEnabled(true);
+        jTextCode.setEnabled(true);
 
     }
 
@@ -88,6 +89,9 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
         ajouter = new javax.swing.JLabel();
         valider = new javax.swing.JLabel();
         retour = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextCode = new javax.swing.JTextField();
+        modifier = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +160,15 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Code");
+
+        modifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        modifier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modifierMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,28 +176,29 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(TextTel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(TextMdp, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextAdress, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextPrenom, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextNom, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextMail))
-                .addGap(49, 378, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TextTel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                            .addComponent(TextMdp, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextAdress, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextPrenom, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNom, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextMail)
+                            .addComponent(jTextCode, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(243, 243, 243)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,11 +210,13 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
                         .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
+                        .addGap(49, 49, 49)
+                        .addComponent(modifier)
+                        .addGap(55, 55, 55)
                         .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
+                        .addGap(34, 34, 34)
                         .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,16 +247,22 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(TextMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(supprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(valider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(supprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -255,7 +277,10 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
     }//GEN-LAST:event_TextMailActionPerformed
 
     private void ajouterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajouterMouseClicked
+        jTextCode.setText(Integer.toString(0));
+
         ajouter.setEnabled(false);
+
 
         supprimer.setEnabled(false);
 
@@ -293,6 +318,7 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
                 pr.setNom(TextNom.getText());
                 pr.setTel(Integer.parseInt(TextTel.getText()));
                 pr.setPrenom(TextPrenom.getText());
+                pr.setCode(Integer.parseInt(jTextCode.getText()));
                 prdao.ajouterPrestataire(pr);
 
 
@@ -317,6 +343,16 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
 
                 jScrollPane2.setViewportView(jTable2);
                 break;
+
+            case 3:
+                int id1 = (Integer) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0);
+                pr.setId_Prestataire(id1);
+                pr.setCode(Integer.parseInt(jTextCode.getText()));
+                prdao.Modifier(pr);
+                jTable2 = new javax.swing.JTable();
+                jTable2.setModel(new ListePrestataireControlleur());
+                jScrollPane2.setViewportView(jTable2);
+                break;
         }
         ajouter.setEnabled(true);
 
@@ -339,6 +375,7 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
     }//GEN-LAST:event_validerMouseClicked
 
     private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
+        jTextCode.setText(Integer.toString(0));
 
 
         ajouter.setEnabled(true);
@@ -352,6 +389,23 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_retourMouseClicked
+
+    private void modifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifierMouseClicked
+       
+                System.out.println("hello");
+        
+        int id = (Integer) jTable2.getModel().getValueAt(jTable2.getSelectedRow(),7);
+        jTextCode.setText(Integer.toString(id));
+
+        ajouter.setEnabled(false);
+        modifier.setEnabled(false);
+        supprimer.setEnabled(false);
+
+        valider.setEnabled(true);
+        retour.setEnabled(true);
+        this.jTextCode.setEnabled(true);
+        choix = 3;        // TODO add your handling code here:
+    }//GEN-LAST:event_modifierMouseClicked
 
     /**
      * @param args the command line arguments
@@ -402,10 +456,13 @@ public class ListeDesPrestataires extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextCode;
+    private javax.swing.JLabel modifier;
     private javax.swing.JLabel retour;
     private javax.swing.JLabel supprimer;
     private javax.swing.JLabel valider;

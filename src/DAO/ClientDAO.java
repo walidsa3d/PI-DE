@@ -20,7 +20,7 @@ import java.util.List;
 public class ClientDAO {
 
     public void ajouter(Client c) {
-        String req = "insert into client (Nom,prenom,mail,adresse,mot_de_passe,tel) values (?,?,?,?,?,?)";
+        String req = "insert into client (Nom,prenom,mail,adresse,mot_de_passe,tel,code) values (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(req);
             ps.setString(1, c.getNom());
@@ -29,6 +29,7 @@ public class ClientDAO {
             ps.setString(4, c.getAdresse());
             ps.setString(5, c.getMot_De_Passe());
             ps.setInt(6, c.getTel());
+            ps.setInt(7,c.getCode());
             ps.executeUpdate();
             System.out.println("ajout effectué");
         } catch (SQLException ex) {
@@ -61,6 +62,7 @@ public class ClientDAO {
         }
     }
     
+    
       public List<Client> GetAllClient()
      {      
         
@@ -79,6 +81,7 @@ public class ClientDAO {
                 c.setAdresse(resultat.getString(5));
                 c.setMot_De_Passe(resultat.getString(6));
                 c.setTel(resultat.getInt(7));
+                c.setCode(resultat.getInt(8));
                 ListeClient.add(c);
                 
                 
@@ -104,6 +107,19 @@ return ListeClient;
             
         }
                  
+     }
+     public void Modifier(Client c) {
+        String req = "update client set code=(?) where Id_Client=(?)";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(req);
+            ps.setInt(2, c.getId_Client());
+            ps.setInt(1, c.getCode());
+            ps.executeUpdate();
+            System.out.println("Modification effectuée");
+        } catch (SQLException ex) {
+            System.out.println("non effectuée" + ex.getMessage());
+
+        }
      }
      
      

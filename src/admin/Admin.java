@@ -9,8 +9,7 @@ package admin;
  * @author Sony
  */
 public class Admin {
-    
-    
+
     /**
      * @param args the command line arguments
      */
