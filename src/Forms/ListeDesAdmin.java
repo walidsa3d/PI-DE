@@ -51,7 +51,7 @@ public class ListeDesAdmin extends javax.swing.JFrame {
 
     //activer le champ idres et desactiver les autres
     public void enableIdRes() {
-        txtNom.setEnabled(true);
+        txtNom.setEnabled(false);
         txtPrenom.setEnabled(false);
         txtMail.setEnabled(false);
         txtMdp.setEnabled(false);
@@ -60,8 +60,8 @@ public class ListeDesAdmin extends javax.swing.JFrame {
     public void enableIdAnddate() {
         txtNom.setEnabled(true);
         txtPrenom.setEnabled(true);
-        txtMail.setEnabled(false);
-        txtMdp.setEnabled(false);
+        txtMail.setEnabled(true);
+        txtMdp.setEnabled(true);
     }
 
     /**
@@ -276,6 +276,16 @@ public class ListeDesAdmin extends javax.swing.JFrame {
         retour.setEnabled(true);
         this.enableIdAnddate();
         choix = 2;
+        AdminDAO dao = new AdminDAO();
+        
+        String nom =  (String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1);
+        txtNom.setText(nom);
+        String prenom =  (String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 2);
+        txtPrenom.setText(prenom);
+        String mail =  (String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 3);
+        txtMail.setText(mail);
+        String mdp = (String)  jTable2.getModel().getValueAt(jTable2.getSelectedRow(),4);
+        txtMdp.setText(mdp);
         // TODO add your handling code here:
     }//GEN-LAST:event_modifierMouseClicked
 
